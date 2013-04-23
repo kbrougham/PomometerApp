@@ -1,0 +1,7 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+	<color name="red_background">#FF990000</color>
+	<color name="red_foreground">#FFFF0000</color>
+	<color name="white_text">#FFFFFF</color>
+</resources>
