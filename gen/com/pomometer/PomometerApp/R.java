@@ -50,7 +50,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int page_title_separator=0x7f090002;
     }
     public static final class layout {
-        public static final int activity_project_list=0x7f030000;
+        public static final int activity_list_layout=0x7f030000;
+        public static final int activity_project_list=0x7f030001;
     }
     public static final class menu {
         public static final int project_list=0x7f080000;

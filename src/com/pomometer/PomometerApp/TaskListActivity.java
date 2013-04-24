@@ -32,10 +32,8 @@ public class TaskListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_project_list);	
+		setContentView(R.layout.activity_list_layout);	
 
-		//the Task_id sent by the Task list
-		
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -46,32 +44,14 @@ public class TaskListActivity extends Activity {
 		TextView page_title = (TextView) findViewById(R.id.page_title);
 		page_title.setText("Task List");
 		
-		//change new Task button into new task
-		Button new_task = (Button) findViewById(R.id.new_object_button);
-		new_task.setText("New Task");
-		
-		int MAX_LINES_TASK_NAME = 2;
+		final int MAX_LINES_TASK_NAME = 2;
 		
 		//new table layout which will load the table that the data will be placed in
-		TableLayout Task_list_content = (TableLayout) findViewById(R.id.page_list_content);
+		TableLayout task_list_content = (TableLayout) findViewById(R.id.page_list_content);
 		//list of Tasks, to be retrieved through GSON
 		Vector<Task> list_of_tasks = new Vector<Task>();
 		list_of_tasks = populate();
 		
-		//Ians GSON Code to get data here
-		/*
-		list_of_tasks.add(new Task(1,"First Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(2,"Second Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(3,"Third Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(5,"Fourth Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(7,"Fifth Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(8,"Sixth Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(9,"Seventh Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(10,"Eighth Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(12,"Ninth Task", "Description", 5, Integer.parseInt(project_id)));
-		list_of_tasks.add(new Task(13,"Tenth Task", "Description", 5, Integer.parseInt(project_id)));
-		*/
-		//end ian gson
 		
 		if (list_of_tasks.size() == 0){
 			TableRow a_row_to_add = new TableRow(this);
@@ -83,7 +63,7 @@ public class TaskListActivity extends Activity {
 			notice.setTextSize(20);
 			notice.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
 			a_row_to_add.addView(notice);
-			Task_list_content.addView(a_row_to_add);
+			task_list_content.addView(a_row_to_add);
 		}else{
 			for(int i=0;i<list_of_tasks.size();i++)
 			{
@@ -133,7 +113,7 @@ public class TaskListActivity extends Activity {
 				a_row_to_add.addView(task_name);
 				a_row_to_add.addView(edit_button);
 				a_row_to_add.addView(delete_button);	
-				Task_list_content.addView(a_row_to_add);			
+				task_list_content.addView(a_row_to_add);			
 			}
 		}
 		
@@ -222,6 +202,7 @@ public class TaskListActivity extends Activity {
 				e.printStackTrace();
 			}
 			return tempObj;
+			//set button attributes			
 		}
 		
 	}

@@ -56,6 +56,13 @@ public class Result {
 		this.task_id = task_id;
 	}
 	
+	public Result(int id, String goal, java.util.Date started_at, int task_id)
+	{
+		setId(id);
+		setGoal(goal);
+		setStartedAt(started_at);
+		setTaskId(task_id);
+	}
 	public Result(int id, String goal, String notes, int duration, java.util.Date started_at, java.util.Date ended_at, int task_id){
 		setId(id);
 		setGoal(goal);
