@@ -76,10 +76,6 @@ public class TaskListActivity extends Activity {
 				//Task name button, will link to task page for this Task
 				Button task_name = new Button(this);
 
-				//edit and delete buttons to edit or delete the Task
-				Button edit_button = new Button(this);			
-				Button delete_button = new Button(this);
-
 				//set button attributes
 				task_name.setText(list_of_tasks.get(i).getName());
 				task_name.setMaxLines(MAX_LINES_TASK_NAME);
@@ -90,29 +86,16 @@ public class TaskListActivity extends Activity {
 		             public void onClick(View v) {
 		            	//index to substring from
 		     	    	int index_to_substring_at = v.getTag().toString().indexOf("_");
-		     	    	String id_to_send = v.getTag().toString().substring(index_to_substring_at-1);
+		     	    	String id_to_send = v.getTag().toString().substring(index_to_substring_at+1);
 		     	    	
 		     	    	//intent to load new activity
-		     	    	//Intent i = new Intent(getApplicationContext(), ResultListActivity.class);
-		     	    	//i.putExtra("id",id_to_send);
-		     	    	//startActivity(i);
+		     	    	Intent i = new Intent(getApplicationContext(), ResultListActivity.class);
+		     	    	i.putExtra("id",id_to_send);
+		     	    	startActivity(i);
 		             }
 		         });
-				
-				edit_button.setText("Edit");
-				edit_button.setTag("edit_" + list_of_tasks.get(i).getId());
-				edit_button.setTextColor(getResources().getColor(R.color.white_text));
-				edit_button.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.22f));
-				
-				delete_button.setText("Delete");
-				delete_button.setTag("delete_" + list_of_tasks.get(i).getId());
-				delete_button.setTextColor(getResources().getColor(R.color.white_text));
-				delete_button.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.22f));
-				
 				//add the buttons to the current row, then add the row to the table
 				a_row_to_add.addView(task_name);
-				a_row_to_add.addView(edit_button);
-				a_row_to_add.addView(delete_button);	
 				task_list_content.addView(a_row_to_add);			
 			}
 		}
