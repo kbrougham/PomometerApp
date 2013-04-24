@@ -28,7 +28,7 @@ public class ProjectListActivity extends Activity {
 		int MAX_LINES_PROJECT_NAME = 2;
 		
 		//new table layout which will load the table that the data will be placed in
-		TableLayout project_list_content = (TableLayout) findViewById(R.id.project_list_content);
+		TableLayout project_list_content = (TableLayout) findViewById(R.id.page_list_content);
 		//list of projects, to be retrieved through GSON
 		Vector<Project> list_of_projects = new Vector<Project>();
 		
@@ -69,6 +69,19 @@ public class ProjectListActivity extends Activity {
 			project_name.setTag("project_" + list_of_projects.get(i).getId());
 			project_name.setTextColor(getResources().getColor(R.color.white_text));
 			project_name.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
+			project_name.setOnClickListener(new View.OnClickListener() {
+	             public void onClick(View v) {
+	            	//index to substring from
+	     	    	int index_to_substring_at = v.getTag().toString().indexOf("_");
+	     	    	//we substring from +1 because we want everything AFTER the _
+	     	    	String id_to_send = v.getTag().toString().substring(index_to_substring_at+1);
+	     	    	
+	     	    	//intent to load new activity
+	     	    	Intent i = new Intent(getApplicationContext(), TaskListActivity.class);
+	     	    	i.putExtra("id",id_to_send);
+	     	    	startActivity(i);
+	             }
+	         });
 			
 			edit_button.setText("Edit");
 			edit_button.setTag("edit_" + list_of_projects.get(i).getId());
@@ -94,28 +107,4 @@ public class ProjectListActivity extends Activity {
 		getMenuInflater().inflate(R.menu.project_list, menu);
 		return true;
 	}*/
-
-	public OnClickListener onClick(Button a_button) {
-	    // TODO Auto-generated method stub
-	    if(a_button.getTag().toString().contains("project"))
-	    {
-	    	//index to substring from
-	    	int index_to_substring_at = a_button.getTag().toString().indexOf("_");
-	    	String id_to_send = a_button.getTag().toString().substring(index_to_substring_at-1);
-	    	
-	    	//intent to load new activity
-	    	Intent i = new Intent(getApplicationContext(), TaskListActivity.class);
-	    	i.putExtra("id",id_to_send);
-	    	startActivity(i);
-	    }
-	    else if(a_button.getTag().toString().contains("edit"))
-	    {
-	    	//handle edit press
-	    }
-	    else if (a_button.getTag().toString().contains("delete"))
-	    {
-	    	//handle delete press
-	    }
-		return null;
-	}
 }
