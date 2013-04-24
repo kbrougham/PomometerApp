@@ -117,6 +117,8 @@ public class ProjectListActivity extends Activity {
 		}
 	}
 	
+	
+	
 	private Vector<Project> populate() {
 	    Vector<Project> projects = new Vector<Project>();
 	    JSONObject obj = null;
