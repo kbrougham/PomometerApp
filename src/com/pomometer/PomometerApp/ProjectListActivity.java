@@ -1,9 +1,22 @@
 package com.pomometer.PomometerApp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.pomometer.PomometerApp.R;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -31,8 +44,10 @@ public class ProjectListActivity extends Activity {
 		TableLayout project_list_content = (TableLayout) findViewById(R.id.project_list_content);
 		//list of projects, to be retrieved through GSON
 		Vector<Project> list_of_projects = new Vector<Project>();
+		list_of_projects = populate(); 
 		
 		//Ians GSON Code to get data here
+		/*
 		list_of_projects.add(new Project(1,"Fir\nst P\nroject"));
 		list_of_projects.add(new Project(2,"Second Project"));
 		list_of_projects.add(new Project(3,"Third Project"));
@@ -43,6 +58,7 @@ public class ProjectListActivity extends Activity {
 		list_of_projects.add(new Project(10,"Eighth Project"));
 		list_of_projects.add(new Project(12,"Ninth Project"));
 		list_of_projects.add(new Project(13,"Tenth Project"));
+		*/
 		//end ian gson
 		
 		for(int i=0;i<list_of_projects.size();i++)
@@ -86,6 +102,87 @@ public class ProjectListActivity extends Activity {
 			a_row_to_add.addView(delete_button);	
 			project_list_content.addView(a_row_to_add);			
 		}
+	}
+	
+	private Vector<Project> populate() {
+	    Vector<Project> projects = new Vector<Project>();
+	    JSONObject obj = null;
+	    
+	        String jsonUrl = "http://pomometer.herokuapp.com/projects.json";
+	        try {
+				obj = new Read().execute(jsonUrl).get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        	JSONArray ja = null;
+				try {
+					ja = obj.getJSONArray("projects");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	for (int i = 0; i < ja.length(); i++){
+	        		JSONObject jo = null;
+					try {
+						jo = (JSONObject) ja.get(i);
+						String name = jo.getString("name");
+						int id = Integer.valueOf(jo.getString("id"));
+						Project tempProject = new Project(id, name);
+						projects.add(tempProject);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	}
+	        
+        return projects;
+    }
+	
+	public class Read extends AsyncTask<String, Integer, JSONObject>{
+
+		@Override
+		protected JSONObject doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			URL jsonUrl = null;
+			URLConnection transport = null;
+			InputStreamReader isr = null;
+			String line = null;
+			JSONObject tempObj = null;
+			
+			
+			try {
+				jsonUrl = new URL(params[0]);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			try {
+				transport = jsonUrl.openConnection();
+				isr = new InputStreamReader(transport.getInputStream());
+				BufferedReader in = new BufferedReader(isr);
+				line = in.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			try {
+				tempObj = new JSONObject(line);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return tempObj;
+		}
+		
 	}
 
 	/*@Override
