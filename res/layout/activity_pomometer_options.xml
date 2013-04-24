@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_layout"
@@ -28,33 +29,46 @@
             android:layout_below="@id/page_title"
             android:background="@color/white_text" />
 
-        <ScrollView
-            android:id="@+id/page_list_scroll_view"
+        <TextView
+            android:id="@+id/goal_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/page_list_options_frame"
+            android:layout_alignLeft="@+id/page_title_separator"
+            android:layout_alignRight="@+id/page_title_separator"
             android:layout_below="@+id/page_title_separator"
-            android:background="@color/red_background"
-            android:fadeScrollbars="false" >
+            android:gravity="center"
+            android:text="@string/add_a_goal"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/row_text_size" />
 
-            <TableLayout
-                android:id="@+id/page_list_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </TableLayout>
-
-        </ScrollView>
-        
-        <FrameLayout
-            android:id="@+id/page_list_options_frame"
+        <EditText
+            android:id="@+id/goal_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="false"
-            android:background="@color/red_background" >
+            android:layout_alignLeft="@+id/goal_subtitle"
+            android:layout_alignRight="@+id/goal_subtitle"
+            android:layout_below="@+id/goal_subtitle"
+            android:ems="10"
+            android:textColor="@color/white_text"
+            android:textColorHint="@color/white_text" />
 
-        </FrameLayout>
+        <TextView
+            android:id="@+id/duration_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/goal_entry"
+            android:layout_below="@+id/goal_entry"
+            android:gravity="center"
+            android:text="@string/add_a_goal"
+            android:textColor="@color/white_text"
+            android:textSize="@dimen/row_text_size" />
+
+        <NumberPicker
+            android:id="@+id/duration_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/duration_subtitle"
+            android:layout_centerHorizontal="true"
+            android:background="@color/red_foreground" />
 
 </RelativeLayout>

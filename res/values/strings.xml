@@ -7,4 +7,7 @@
 
     <string name="project_list_title">Project List</string>
     <string name="project_list_button_new">New Project</string>
+    
+    <string name="add_a_goal">Enter a goal</string>
+    <string name="add_a_duration">Enter a duration</string>
 </resources>

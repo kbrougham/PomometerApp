@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,6 +44,12 @@ public class ResultListActivity extends Activity {
 		start_button.setText("Start Pomodoro");
 		start_button.setTextColor(getResources().getColor(R.color.white_text));
 		start_button.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		start_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+    	    	Intent i = new Intent(getApplicationContext(), PomometerOptionsActivity.class);
+    	    	startActivity(i);
+            }
+        });
 		options_frame.addView(start_button);
 		
 		//list of Tasks, to be retrieved through GSON
