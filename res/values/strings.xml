@@ -10,4 +10,6 @@
     
     <string name="add_a_goal">Enter a goal</string>
     <string name="add_a_duration">Enter a duration</string>
+    
+    <string name="start_pomodoro">Start Pomodoro</string>
 </resources>

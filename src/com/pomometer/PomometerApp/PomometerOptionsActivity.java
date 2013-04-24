@@ -12,11 +12,12 @@ public class PomometerOptionsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pomometer_options);
 		
+		final int MIN_DURATION_IN_MINUTES = 1;
 		final int MAX_DURATION_IN_MINUTES = 60;
 		
 		NumberPicker duration_picker = (NumberPicker) findViewById(R.id.duration_picker);
 		duration_picker.setMaxValue(MAX_DURATION_IN_MINUTES);
-		duration_picker.setMinValue(0);
+		duration_picker.setMinValue(MIN_DURATION_IN_MINUTES);
 		
 		// retrieve the textview reference to change text colour
 		TextView npTextView = (TextView) duration_picker.getChildAt(1); // since indexing begins at 0

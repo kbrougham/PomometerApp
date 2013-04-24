@@ -40,26 +40,35 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
+        public static final int action_settings=0x7f09000b;
+        public static final int duration_picker=0x7f090009;
+        public static final int duration_subtitle=0x7f090008;
+        public static final int goal_entry=0x7f090007;
+        public static final int goal_subtitle=0x7f090006;
         public static final int list_layout=0x7f090000;
         public static final int page_list_content=0x7f090005;
         public static final int page_list_options_frame=0x7f090004;
         public static final int page_list_scroll_view=0x7f090003;
         public static final int page_title=0x7f090001;
         public static final int page_title_separator=0x7f090002;
+        public static final int start_button=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_list_layout=0x7f030000;
+        public static final int activity_pomometer_options=0x7f030001;
     }
     public static final class menu {
         public static final int project_list=0x7f080000;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
+        public static final int add_a_duration=0x7f060006;
+        public static final int add_a_goal=0x7f060005;
         public static final int app_name=0x7f060000;
         public static final int hello_world=0x7f060002;
         public static final int project_list_button_new=0x7f060004;
         public static final int project_list_title=0x7f060003;
+        public static final int start_pomodoro=0x7f060007;
     }
     public static final class style {
         /** 

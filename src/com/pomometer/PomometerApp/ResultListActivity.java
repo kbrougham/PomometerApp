@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -40,9 +41,16 @@ public class ResultListActivity extends Activity {
 		
 		//Frame layout to add the START POMODORO button
 		FrameLayout options_frame = (FrameLayout) findViewById(R.id.page_list_options_frame);
+		//a separation line for distinction from table
+		LinearLayout a_separator = new LinearLayout(this);
+		a_separator.setBackgroundColor(getResources().getColor(R.color.red_background));
+		a_separator.setMinimumHeight(1); //set a thin line separator
+		options_frame.addView(a_separator);
+		//button to add to bottom frame
 		Button start_button = new Button(this);
 		start_button.setText("Start Pomodoro");
 		start_button.setTextColor(getResources().getColor(R.color.white_text));
+		start_button.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 		start_button.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		start_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

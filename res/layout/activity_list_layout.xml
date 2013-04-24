@@ -53,7 +53,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="false"
-            android:background="@color/red_background" >
+            android:background="@color/red_foreground" >
 
         </FrameLayout>
 

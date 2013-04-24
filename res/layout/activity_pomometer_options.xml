@@ -49,6 +49,7 @@
             android:layout_alignRight="@+id/goal_subtitle"
             android:layout_below="@+id/goal_subtitle"
             android:ems="10"
+            android:inputType="text"
             android:textColor="@color/white_text"
             android:textColorHint="@color/white_text" />
 
@@ -59,7 +60,7 @@
             android:layout_alignLeft="@+id/goal_entry"
             android:layout_below="@+id/goal_entry"
             android:gravity="center"
-            android:text="@string/add_a_goal"
+            android:text="@string/add_a_duration"
             android:textColor="@color/white_text"
             android:textSize="@dimen/row_text_size" />
 
@@ -70,5 +71,16 @@
             android:layout_below="@+id/duration_subtitle"
             android:layout_centerHorizontal="true"
             android:background="@color/red_foreground" />
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/duration_subtitle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/duration_subtitle"
+            android:background="@color/red_foreground"
+            android:text="@string/start_pomodoro"
+            android:textColor="@color/white_text" />
 
 </RelativeLayout>
