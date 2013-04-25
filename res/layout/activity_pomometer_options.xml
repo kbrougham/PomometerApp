@@ -11,7 +11,21 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ProjectListActivity" >
 
-        <TextView
+    <ScrollView
+        android:id="@+id/options_page_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/page_title_separator"
+        android:background="@color/red_background"
+        android:fadeScrollbars="false" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+            
+            <TextView
             android:id="@+id/page_title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -26,16 +40,12 @@
             android:id="@+id/page_title_separator"
             android:layout_width="fill_parent"
             android:layout_height="3dp"
-            android:layout_below="@id/page_title"
             android:background="@color/white_text" />
 
         <TextView
             android:id="@+id/goal_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/page_title_separator"
-            android:layout_alignRight="@+id/page_title_separator"
-            android:layout_below="@+id/page_title_separator"
             android:gravity="center"
             android:text="@string/add_a_goal"
             android:textColor="@color/white_text"
@@ -45,9 +55,6 @@
             android:id="@+id/goal_entry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/goal_subtitle"
-            android:layout_alignRight="@+id/goal_subtitle"
-            android:layout_below="@+id/goal_subtitle"
             android:ems="10"
             android:inputType="text"
             android:textColor="@color/white_text"
@@ -57,8 +64,6 @@
             android:id="@+id/duration_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/goal_entry"
-            android:layout_below="@+id/goal_entry"
             android:gravity="center"
             android:text="@string/add_a_duration"
             android:textColor="@color/white_text"
@@ -68,19 +73,17 @@
             android:id="@+id/duration_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/duration_subtitle"
-            android:layout_centerHorizontal="true"
             android:background="@color/red_foreground" />
 
         <Button
             android:id="@+id/start_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/duration_subtitle"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/duration_subtitle"
+            android:layout_gravity="bottom"
             android:background="@color/red_foreground"
             android:text="@string/start_pomodoro"
             android:textColor="@color/white_text" />
 
+        </LinearLayout>              
+    </ScrollView>
 </RelativeLayout>

@@ -48,28 +48,29 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int break_length=0x7f0a0014;
-        public static final int btn_finish_dialog=0x7f0a0015;
-        public static final int cancel_button=0x7f0a0011;
-        public static final int confirm_button=0x7f0a0012;
-        public static final int durationAndBreakLength=0x7f0a0016;
-        public static final int duration_length=0x7f0a0013;
-        public static final int duration_picker=0x7f0a000d;
-        public static final int duration_subtitle=0x7f0a000c;
+        public static final int break_length=0x7f0a0015;
+        public static final int btn_finish_dialog=0x7f0a0016;
+        public static final int cancel_button=0x7f0a0012;
+        public static final int confirm_button=0x7f0a0013;
+        public static final int durationAndBreakLength=0x7f0a0017;
+        public static final int duration_length=0x7f0a0014;
+        public static final int duration_picker=0x7f0a000e;
+        public static final int duration_subtitle=0x7f0a000d;
         public static final int final_submit_button=0x7f0a0009;
         public static final int finish_title=0x7f0a0006;
-        public static final int goal_entry=0x7f0a000b;
-        public static final int goal_subtitle=0x7f0a000a;
-        public static final int linearLayout1=0x7f0a0010;
+        public static final int goal_entry=0x7f0a000c;
+        public static final int goal_subtitle=0x7f0a000b;
+        public static final int linearLayout1=0x7f0a0011;
         public static final int notes_edit_text=0x7f0a0008;
         public static final int notes_subtitle=0x7f0a0007;
+        public static final int options_page_scroll_view=0x7f0a000a;
         public static final int page_list_content=0x7f0a0005;
         public static final int page_list_options_frame=0x7f0a0004;
         public static final int page_list_scroll_view=0x7f0a0003;
         public static final int page_title=0x7f0a0001;
         public static final int page_title_separator=0x7f0a0002;
-        public static final int pomo_timer=0x7f0a000f;
-        public static final int start_button=0x7f0a000e;
+        public static final int pomo_timer=0x7f0a0010;
+        public static final int start_button=0x7f0a000f;
         public static final int timer_layout=0x7f0a0000;
     }
     public static final class integer {

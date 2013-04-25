@@ -44,12 +44,14 @@
         android:id="@+id/notes_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/final_submit_button"
         android:layout_alignLeft="@+id/notes_subtitle"
         android:layout_below="@+id/notes_subtitle"
         android:ems="10"
         android:inputType="textMultiLine"
         android:maxLines="@integer/notes_box_max"
-        android:minLines="@integer/notes_box_min" >
+        android:minLines="@integer/notes_box_min"
+        android:gravity="top|left" >
 
         <requestFocus />
     </EditText>
