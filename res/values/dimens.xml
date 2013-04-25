@@ -11,4 +11,7 @@
     <dimen name="font_large">30dp</dimen>
     <dimen name="font_medium">20dp</dimen>
     <dimen name="font_small">10dp</dimen>
+    
+    <dimen name="timer_text_size">100dp</dimen>
+
 </resources>
