@@ -1,11 +1,29 @@
 package com.pomometer.PomometerApp;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -17,13 +35,15 @@ import android.widget.TextView;
 
 public class ResultListActivity extends Activity {
 	
+	String task_id = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_layout);	
 
 		//the project_id sent by the Task list
-		String task_id = "";
+		
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -63,43 +83,159 @@ public class ResultListActivity extends Activity {
 		
 		//list of Tasks, to be retrieved through GSON
 		Vector<Result> list_of_results = new Vector<Result>();
+		list_of_results = populate();
 		
-		//Ians GSON Code to get data here
-		Date tempDate = new Date();
-		
-		list_of_results.add(new Result(1,"First Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(2,"Second Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(3,"Third Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(4,"Fourth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(6,"Fifth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(8,"Sixth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(9,"Seventh Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(10,"Eighth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(11,"Ninth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		list_of_results.add(new Result(13,"Tenth Result"+task_id, tempDate, Integer.parseInt(task_id)));
-		//end ian gson
-		
-		for(int i=0;i<list_of_results.size();i++)
-		{
-			//New row to be added to table
+		if (list_of_results.size() == 0){
 			TableRow a_row_to_add = new TableRow(this);
-			//set background colour of the row
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
-			
-			//Row contains three buttons
-			//Task name button, will link to task page for this Task
-			Button result_name = new Button(this);
+			TextView notice = new TextView(this);
+			notice.setText("There are no Results for this Task.");
+			notice.setMaxLines(MAX_LINES_RESULT_NAME);
+			notice.setTextColor(getResources().getColor(R.color.white_text));
+			notice.setTextSize(20);
+			notice.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
+			a_row_to_add.addView(notice);
+			result_list_content.addView(a_row_to_add);
+		}else{
+			for(int i=0;i<list_of_results.size();i++)
+			{
+				//New row to be added to table
+				TableRow a_row_to_add = new TableRow(this);
+				//set background colour of the row
+				a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
+				
+				//Row contains three buttons
+				//Task name button, will link to task page for this Task
+				Button result_name = new Button(this);
 
-			//set button attributes
-			result_name.setText(list_of_results.get(i).getGoal());
-			result_name.setMaxLines(MAX_LINES_RESULT_NAME);
-			result_name.setTag("task_" + list_of_results.get(i).getId());
-			result_name.setTextColor(getResources().getColor(R.color.white_text));
-			result_name.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
+				//set button attributes
+				result_name.setText(list_of_results.get(i).getGoal());
+				result_name.setMaxLines(MAX_LINES_RESULT_NAME);
+				result_name.setTag("task_" + list_of_results.get(i).getId());
+				result_name.setTextColor(getResources().getColor(R.color.white_text));
+				result_name.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1f));
+							
+				//add the buttons to the current row, then add the row to the table
+				a_row_to_add.addView(result_name);
+				result_list_content.addView(a_row_to_add);			
+			}
+		}
+		
+		
+	}
+	
+	private Vector<Result> populate() {
+	    Vector<Result> results = new Vector<Result>();
+	    JSONObject obj = null;
+	    
+	        String jsonUrl = "http://pomometer.herokuapp.com/tasks/" + task_id + ".json";
+	        try {
+				obj = new Read().execute(jsonUrl).get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        	JSONArray ja = null;
+				try {
+					ja = obj.getJSONArray("results");
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	        	for (int i = 0; i < ja.length(); i++){
+	        		JSONObject jo = null;
+	      
+					try {
+						jo = (JSONObject) ja.get(i);
 						
-			//add the buttons to the current row, then add the row to the table
-			a_row_to_add.addView(result_name);
-			result_list_content.addView(a_row_to_add);			
+						String goal = jo.getString("goal");
+						String notes = jo.getString("notes");
+						Date started_at = null;
+						Date ended_at = null;
+						try {
+							started_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH).parse(jo.getString("started_at"));
+							ended_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH).parse(jo.getString("ended_at"));
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						
+						int duration = Integer.valueOf(jo.getString("duration"));
+						int task = Integer.valueOf(task_id);
+						int id = Integer.valueOf(jo.getString("id"));
+						
+						Result tempResult = new Result(id, goal, notes, duration, started_at, ended_at, task);
+						results.add(tempResult);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	}
+	        
+        return results;
+    }
+	
+	public class Read extends AsyncTask<String, Integer, JSONObject>{
+
+		@Override
+		protected JSONObject doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			URL jsonUrl = null;
+			URLConnection transport = null;
+			InputStreamReader isr = null;
+			String line = null;
+			JSONObject tempObj = null;
+			
+			
+			try {
+				jsonUrl = new URL(params[0]);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			try {
+				transport = jsonUrl.openConnection();
+				isr = new InputStreamReader(transport.getInputStream());
+				BufferedReader in = new BufferedReader(isr);
+				line = in.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			try {
+				tempObj = new JSONObject(line);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return tempObj;
+			//set button attributes			
+		}
+		
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.project_list, menu);
+	    return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    //respond to menu item selection
+		switch (item.getItemId()) {
+			case R.id.durationAndBreakLength:
+				startActivity(new Intent(this, DurationAndBreak.class));
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
 		}
 	}
 }

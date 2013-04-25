@@ -79,7 +79,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int add_a_duration=0x7f060006;
         public static final int add_a_goal=0x7f060005;
         public static final int app_name=0x7f060000;
+        public static final int break_length_header=0x7f060009;
+        public static final int duration_length_header=0x7f060008;
         public static final int hello_world=0x7f060002;
+        public static final int length_measurement=0x7f06000a;
+        public static final int options_button_name=0x7f06000b;
         public static final int project_list_button_new=0x7f060004;
         public static final int project_list_title=0x7f060003;
         public static final int start_pomodoro=0x7f060007;

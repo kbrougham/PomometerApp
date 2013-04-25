@@ -3,6 +3,9 @@ package com.pomometer.PomometerApp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,7 +43,24 @@ public class PomometerOptionsActivity extends Activity {
             }});
 		
 		// retrieve the textview reference to change text colour
-		TextView npTextView = (TextView) duration_picker.getChildAt(1); // since indexing begins at 0
+		TextView npTextView = (TextView) duration_picker.getChildAt(0); // since indexing begins at 0
 		npTextView.setTextColor(getResources().getColor(R.color.white_text));
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.project_list, menu);
+	    return true;
+	}
+	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    //respond to menu item selection
+		switch (item.getItemId()) {
+			case R.id.durationAndBreakLength:
+				startActivity(new Intent(this, DurationAndBreak.class));
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 }

@@ -12,4 +12,9 @@
     <string name="add_a_duration">Enter a duration</string>
     
     <string name="start_pomodoro">Start Pomodoro</string>
+    
+    <string name="duration_length_header">Duration Length</string>
+    <string name="break_length_header">Break Length</string>
+    <string name="length_measurement">(in minutes)</string>
+    <string name="options_button_name">Finished</string>
 </resources>
