@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
@@ -76,6 +77,7 @@ public class ResultListActivity extends Activity {
 		start_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
     	    	Intent i = new Intent(getApplicationContext(), PomometerOptionsActivity.class);
+    	    	i.putExtra("task_id", task_id);
     	    	startActivity(i);
             }
         });

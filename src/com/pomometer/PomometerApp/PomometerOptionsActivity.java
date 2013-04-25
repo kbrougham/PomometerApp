@@ -1,5 +1,9 @@
 package com.pomometer.PomometerApp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +19,16 @@ import android.widget.Toast;
 
 public class PomometerOptionsActivity extends Activity {
 	
+	String task_id;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pomometer_options);
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null){
+			task_id = extras.getString("task_id");
+		}
 		
 		final int MIN_DURATION_IN_MINUTES = 1;
 		final int MAX_DURATION_IN_MINUTES = 60;
@@ -37,8 +47,19 @@ public class PomometerOptionsActivity extends Activity {
             	}
             	else
             	{
+            		EditText goalEditText = (EditText) findViewById(R.id.goal_entry);
+            		
+            		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
+            		Date startPomometer = new Date();
+            		String formattedStartDate = dateFormatter.format(startPomometer);
+            		
             		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
+            		
             		i.putExtra("duration", ((NumberPicker) findViewById(R.id.duration_picker)).getValue());
+            		i.putExtra("task_id", task_id);
+            		i.putExtra("goal", goalEditText.getText().toString());
+            		i.putExtra("started_at", formattedStartDate);
+            		
             		startActivity(i);
             	}
             }});
