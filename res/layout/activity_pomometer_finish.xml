@@ -48,10 +48,11 @@
         android:layout_alignLeft="@+id/notes_subtitle"
         android:layout_below="@+id/notes_subtitle"
         android:ems="10"
+        android:gravity="top|left"
         android:inputType="textMultiLine"
         android:maxLines="@integer/notes_box_max"
         android:minLines="@integer/notes_box_min"
-        android:gravity="top|left" >
+        android:textColor="@color/white_text" >
 
         <requestFocus />
     </EditText>
