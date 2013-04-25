@@ -6,4 +6,9 @@
 
     <dimen name="page_title_text_size">32dp</dimen>
     <dimen name="row_text_size">25dp</dimen>
+    
+    <!-- Font sizes -->
+    <dimen name="font_large">30dp</dimen>
+    <dimen name="font_medium">20dp</dimen>
+    <dimen name="font_small">10dp</dimen>
 </resources>

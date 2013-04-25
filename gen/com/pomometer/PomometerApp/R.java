@@ -19,7 +19,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int buttonBarStyle=0x7f010000;
     }
     public static final class color {
+        public static final int black=0x7f040005;
         public static final int black_overlay=0x7f040000;
+        public static final int green_background=0x7f040004;
         public static final int red_background=0x7f040001;
         public static final int red_foreground=0x7f040002;
         public static final int white_text=0x7f040003;
@@ -33,6 +35,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        /**  Font sizes 
+         */
+        public static final int font_large=0x7f050004;
+        public static final int font_medium=0x7f050005;
+        public static final int font_small=0x7f050006;
         public static final int page_title_text_size=0x7f050002;
         public static final int row_text_size=0x7f050003;
     }
@@ -40,7 +47,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f090006;
+        public static final int break_length=0x7f090007;
+        public static final int btn_finish_dialog=0x7f090008;
+        public static final int durationAndBreakLength=0x7f090009;
+        public static final int duration_length=0x7f090006;
         public static final int list_layout=0x7f090000;
         public static final int page_list_content=0x7f090005;
         public static final int page_list_options_frame=0x7f090004;
@@ -50,6 +60,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class layout {
         public static final int activity_list_layout=0x7f030000;
+        public static final int duration_and_break_length=0x7f030001;
     }
     public static final class menu {
         public static final int project_list=0x7f080000;

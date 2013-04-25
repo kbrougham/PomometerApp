@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
@@ -14,22 +13,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pomometer.PomometerApp.R;
-
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.LightingColorFilter;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TableRow.LayoutParams;
-import android.widget.TextView;
 
 public class ProjectListActivity extends Activity {
 	
@@ -46,21 +41,6 @@ public class ProjectListActivity extends Activity {
 		//list of projects, to be retrieved through GSON
 		Vector<Project> list_of_projects = new Vector<Project>();
 		list_of_projects = populate(); 
-		
-		//Ians GSON Code to get data here
-		/*
-		list_of_projects.add(new Project(1,"Fir\nst P\nroject"));
-		list_of_projects.add(new Project(2,"Second Project"));
-		list_of_projects.add(new Project(3,"Third Project"));
-		list_of_projects.add(new Project(5,"Fourth Project"));
-		list_of_projects.add(new Project(7,"Fifth Project"));
-		list_of_projects.add(new Project(8,"Sixth Project"));
-		list_of_projects.add(new Project(9,"Seventh Project"));
-		list_of_projects.add(new Project(10,"Eighth Project"));
-		list_of_projects.add(new Project(12,"Ninth Project"));
-		list_of_projects.add(new Project(13,"Tenth Project"));
-		*/
-		//end ian gson
 		
 		for(int i=0;i<list_of_projects.size();i++)
 		{
@@ -99,7 +79,22 @@ public class ProjectListActivity extends Activity {
 		}
 	}
 	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.project_list, menu);
+	    return true;
+	}
 	
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    //respond to menu item selection
+		switch (item.getItemId()) {
+			case R.id.durationAndBreakLength:
+				startActivity(new Intent(this, DurationAndBreak.class));
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
+	}
 	
 	private Vector<Project> populate() {
 	    Vector<Project> projects = new Vector<Project>();
