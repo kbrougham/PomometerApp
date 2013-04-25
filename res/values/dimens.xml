@@ -6,4 +6,5 @@
 
     <dimen name="page_title_text_size">32dp</dimen>
     <dimen name="row_text_size">25dp</dimen>
+    <dimen name="timer_text_size">100dp</dimen>
 </resources>

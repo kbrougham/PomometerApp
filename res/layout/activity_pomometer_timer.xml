@@ -18,7 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Chronometer"
-        android:textColor="@color/white_text" />
+        android:textColor="@color/white_text"
+        android:textSize="@dimen/timer_text_size" />
         
 </RelativeLayout>
