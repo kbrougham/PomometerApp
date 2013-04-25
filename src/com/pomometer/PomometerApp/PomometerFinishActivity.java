@@ -1,17 +1,26 @@
 package com.pomometer.PomometerApp;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PomometerFinishActivity extends Activity {
-		
+	String notes = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,7 +29,7 @@ public class PomometerFinishActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		
 		final String sent_goal = extras.getString("goal");
-		String notes = "";
+		
 		final Long sent_duration = extras.getLong("elapsed_duration"); //in ms
 		double decimal_duration = sent_duration/1000; //converts to seconds
 		decimal_duration /= 60; //converts to minutes
@@ -37,6 +46,21 @@ public class PomometerFinishActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//json to commit to webserver
+				JSONObject result = new JSONObject();
+				
+				try {
+					result.put("goal", sent_goal);
+					result.put("notes", notes);
+					result.put("duration", calculated_duration);
+					result.put("started_at", started_at);
+					result.put("ended_at", ended_at);
+					result.put("task_id", task_id);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				new Write().execute(result);
 				
 				/*
 				 * sent_goal
@@ -47,12 +71,46 @@ public class PomometerFinishActivity extends Activity {
 				 * task_id
 				 */
 				
-        		Toast.makeText(getBaseContext(), ((Integer)calculated_duration).toString(), Toast.LENGTH_SHORT).show();
+        		//Toast.makeText(getBaseContext(), ((Integer)calculated_duration).toString(), Toast.LENGTH_SHORT).show();
 
-				//Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);        		
-        		//i.putExtra("task_id", task_id);        		
-        		//startActivity(i);
+				Intent i = new Intent(getApplicationContext(), ResultListActivity.class);
+				i.putExtra("task_id", task_id); 
+				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        		startActivity(i);
 			}			
 		});
+	}
+	
+	public class Write extends AsyncTask<JSONObject, Integer, Boolean>{
+
+		@Override
+		protected Boolean doInBackground(JSONObject... params) {
+			// TODO Auto-generated method stub
+			
+			DefaultHttpClient client = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost("http://pomometer.herokuapp.com/results/create.json");
+			
+			try {
+				StringEntity JSONResult = new StringEntity(params[0].toString());
+				httpPost.setEntity(JSONResult);
+				httpPost.setHeader("Content-Type","application/json");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			HttpResponse response = null;
+			
+			try {
+		        response = client.execute(httpPost);
+		    } catch (ClientProtocolException e) {
+		        e.printStackTrace();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }	
+			
+			return true;
+		}
+		
 	}
 }
