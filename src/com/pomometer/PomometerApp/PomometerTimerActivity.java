@@ -24,7 +24,7 @@ public class PomometerTimerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pomometer_timer);
 		
-		Bundle extras = getIntent().getExtras();
+		final Bundle extras = getIntent().getExtras();
 		
 		final int sent_duration = extras.getInt("duration");
 		
@@ -38,7 +38,14 @@ public class PomometerTimerActivity extends Activity {
            });
 		confirm_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	Chronometer pomo_timer = (Chronometer) findViewById(R.id.pomo_timer);
+            	
             	Intent i = new Intent(getApplicationContext(), PomometerFinishActivity.class);
+            	i.putExtra("elapsed_duration", (SystemClock.elapsedRealtime() - pomo_timer.getBase())); //ms elapsed
+        		i.putExtra("task_id", extras.getInt("task_id"));
+        		i.putExtra("goal", extras.getString("goal"));
+        		i.putExtra("started_at", extras.getString("formattedStartDate"));
+        		i.putExtra("ended_at", extras.getString("formattedEndDate"));
         		startActivity(i);
             }
            });
@@ -61,14 +68,6 @@ public class PomometerTimerActivity extends Activity {
         		//Toast.makeText(getBaseContext(), ((Long)(SystemClock.elapsedRealtime() - current_chronometer.getBase())).toString(), Toast.LENGTH_SHORT).show();
 			}			
 		});
-	}
-	
-	protected void cancelPressed() {
-		finish();
-	}
-	
-	protected void completePressed() {
-		
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
