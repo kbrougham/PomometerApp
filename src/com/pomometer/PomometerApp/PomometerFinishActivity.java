@@ -32,8 +32,8 @@ public class PomometerFinishActivity extends Activity {
 		//set title to Complete: goal.  No strings.xml entry as this is dynamic
 		((TextView) findViewById(R.id.finish_title)).setText("Complete: " + sent_goal);
 		
-		Button confirm_button = (Button) findViewById(R.id.confirm_button);
-		confirm_button.setOnClickListener(new OnClickListener() {
+		Button confirm_button = (Button) findViewById(R.id.final_submit_button);
+		confirm_button.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				//json to commit to webserver
