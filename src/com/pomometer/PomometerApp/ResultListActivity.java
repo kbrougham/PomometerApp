@@ -44,8 +44,9 @@ public class ResultListActivity extends Activity {
 		//a separation line for distinction from table
 		LinearLayout a_separator = new LinearLayout(this);
 		a_separator.setBackgroundColor(getResources().getColor(R.color.red_background));
-		a_separator.setMinimumHeight(1); //set a thin line separator
+		a_separator.setMinimumHeight(2); //set a thin line separator
 		options_frame.addView(a_separator);
+		
 		//button to add to bottom frame
 		Button start_button = new Button(this);
 		start_button.setText("Start Pomodoro");

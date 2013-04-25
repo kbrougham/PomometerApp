@@ -2,8 +2,12 @@ package com.pomometer.PomometerApp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PomometerOptionsActivity extends Activity {
 	
@@ -18,6 +22,21 @@ public class PomometerOptionsActivity extends Activity {
 		NumberPicker duration_picker = (NumberPicker) findViewById(R.id.duration_picker);
 		duration_picker.setMaxValue(MAX_DURATION_IN_MINUTES);
 		duration_picker.setMinValue(MIN_DURATION_IN_MINUTES);
+			
+		Button start_button = (Button) findViewById(R.id.start_button);
+		start_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	//if the edit box where the goal is entered is blank, then tell them to enter something, otherwise, load next screen
+            	if (((EditText) findViewById(R.id.goal_entry)).getText().toString().length() < 1)
+            	{
+            		Toast.makeText(getBaseContext(), "\"" + findViewById(R.id.goal_entry).toString().trim() + "\"", Toast.LENGTH_SHORT).show();
+            	}
+            	else
+            	{
+            		//Intent i = new Intent(getApplicationContext(), PomometerOptionsActivity.class);
+            		//startActivity(i);
+            	}
+            }});
 		
 		// retrieve the textview reference to change text colour
 		TextView npTextView = (TextView) duration_picker.getChildAt(1); // since indexing begins at 0
