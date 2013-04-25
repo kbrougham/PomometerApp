@@ -38,6 +38,7 @@ public class PomometerOptionsActivity extends Activity {
             	else
             	{
             		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
+            		i.putExtra("duration", ((NumberPicker) findViewById(R.id.duration_picker)).getValue());
             		startActivity(i);
             	}
             }});

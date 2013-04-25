@@ -20,5 +20,23 @@
         android:gravity="center"
         android:textColor="@color/white_text"
         android:textSize="@dimen/timer_text_size" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pomo_timer"
+        android:layout_below="@+id/pomo_timer"
+        android:text="@string/cancel_button" 
+        android:onClick="cancelPressed"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pomo_timer"
+        android:layout_toRightOf="@+id/cancel_button"
+        android:text="@string/complete_button"
+        android:onClick="completePressed" />
         
 </RelativeLayout>

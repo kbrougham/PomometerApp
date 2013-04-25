@@ -48,10 +48,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int break_length=0x7f09000d;
-        public static final int btn_finish_dialog=0x7f09000e;
-        public static final int durationAndBreakLength=0x7f09000f;
-        public static final int duration_length=0x7f09000c;
+        public static final int break_length=0x7f09000f;
+        public static final int btn_finish_dialog=0x7f090010;
+        public static final int button2=0x7f09000d;
+        public static final int cancel_button=0x7f09000c;
+        public static final int durationAndBreakLength=0x7f090011;
+        public static final int duration_length=0x7f09000e;
         public static final int duration_picker=0x7f090009;
         public static final int duration_subtitle=0x7f090008;
         public static final int goal_entry=0x7f090007;
@@ -80,6 +82,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int add_a_goal=0x7f060005;
         public static final int app_name=0x7f060000;
         public static final int break_length_header=0x7f060009;
+        public static final int cancel_button=0x7f06000c;
+        public static final int complete_button=0x7f06000d;
         public static final int duration_length_header=0x7f060008;
         public static final int hello_world=0x7f060002;
         public static final int length_measurement=0x7f06000a;
