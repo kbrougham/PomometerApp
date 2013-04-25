@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="notes_box_min">5</integer>
+    <integer name="notes_box_max">10</integer>
+</resources>

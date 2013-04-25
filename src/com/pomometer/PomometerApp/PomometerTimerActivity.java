@@ -3,12 +3,15 @@ package com.pomometer.PomometerApp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.os.SystemClock;
-import android.os.Vibrator;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.NumberPicker;
 import android.widget.Chronometer.OnChronometerTickListener;
 
 public class PomometerTimerActivity extends Activity {
@@ -24,6 +27,21 @@ public class PomometerTimerActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		
 		final int sent_duration = extras.getInt("duration");
+		
+		Button cancel_button = (Button) findViewById(R.id.cancel_button);
+		Button confirm_button = (Button) findViewById(R.id.confirm_button);
+		
+		cancel_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	finish();
+            }
+           });
+		confirm_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	Intent i = new Intent(getApplicationContext(), PomometerFinishActivity.class);
+        		startActivity(i);
+            }
+           });
 		
 		Chronometer pomo_timer = (Chronometer) findViewById(R.id.pomo_timer);
 		//pomo_timer.setFormat("MM:SS");
