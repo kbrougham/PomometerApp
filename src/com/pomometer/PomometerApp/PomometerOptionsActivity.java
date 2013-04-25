@@ -1,6 +1,7 @@
 package com.pomometer.PomometerApp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,12 +30,12 @@ public class PomometerOptionsActivity extends Activity {
             	//if the edit box where the goal is entered is blank, then tell them to enter something, otherwise, load next screen
             	if (((EditText) findViewById(R.id.goal_entry)).getText().toString().length() < 1)
             	{
-            		Toast.makeText(getBaseContext(), "\"" + findViewById(R.id.goal_entry).toString().trim() + "\"", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getBaseContext(), "You must enter a goal!", Toast.LENGTH_SHORT).show();
             	}
             	else
             	{
-            		//Intent i = new Intent(getApplicationContext(), PomometerOptionsActivity.class);
-            		//startActivity(i);
+            		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
+            		startActivity(i);
             	}
             }});
 		
