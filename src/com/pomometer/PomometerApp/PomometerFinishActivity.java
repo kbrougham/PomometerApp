@@ -49,6 +49,7 @@ public class PomometerFinishActivity extends Activity {
 				JSONObject result = new JSONObject();
 				
 				try {
+					result.put("id", 99);
 					result.put("goal", sent_goal);
 					result.put("notes", notes);
 					result.put("duration", calculated_duration);
@@ -88,7 +89,7 @@ public class PomometerFinishActivity extends Activity {
 			// TODO Auto-generated method stub
 			
 			DefaultHttpClient client = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost("http://pomometer.herokuapp.com/results/create.json");
+			HttpPost httpPost = new HttpPost("http://pomometer.herokuapp.com/results.json");
 			
 			try {
 				StringEntity JSONResult = new StringEntity(params[0].toString());
