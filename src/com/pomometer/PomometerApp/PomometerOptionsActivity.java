@@ -74,9 +74,16 @@ public class PomometerOptionsActivity extends Activity {
             	}
             }});
 		
-		// retrieve the textview reference to change text colour
-		//TextView npTextView = (TextView) duration_picker.getChildAt(0); // since indexing begins at 0
-		//npTextView.setTextColor(getResources().getColor(R.color.white_text));
+		try
+		{
+			// retrieve the textview reference to change text colour
+			TextView npTextView = (TextView) duration_picker.getChildAt(0); // since indexing begins at 0
+			npTextView.setTextColor(getResources().getColor(R.color.white_text));
+		}
+		catch (Exception e)
+		{
+			
+		}
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
