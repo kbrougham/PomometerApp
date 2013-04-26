@@ -2,6 +2,7 @@ package com.pomometer.PomometerApp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -11,13 +12,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.NumberPicker;
 import android.widget.Chronometer.OnChronometerTickListener;
 
 public class PomometerTimerActivity extends Activity {
 	
 	final long start_time = SystemClock.elapsedRealtime();
 	final long TIME_TO_VIBRATE = 2000;
+	public static final String USER_PREFERENCES = "MyPreferences";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,10 @@ public class PomometerTimerActivity extends Activity {
 		setContentView(R.layout.activity_pomometer_timer);
 		
 		final Bundle extras = getIntent().getExtras();
+		
+		SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
+		final int alarm_type = settings.getInt("alarm", 1);
+		final int vibration_length = setting.getInt("vibration_length", 1);
 		
 		final int sent_duration = extras.getInt("duration");
 		//display entered duration?
@@ -62,7 +67,17 @@ public class PomometerTimerActivity extends Activity {
 				if (SystemClock.elapsedRealtime() - current_chronometer.getBase() > sent_duration*60*1000)
 				{
 					((Chronometer) findViewById(R.id.pomo_timer)).stop();
-					((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(TIME_TO_VIBRATE); //is time in ms
+					if (alarm_type == 1){
+						//vibration
+						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length); //is time in ms
+					}else if (alarm_type == 2){
+						//vibration and ring
+						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length); //is time in ms
+					}else if (alarm_type == 3){
+						//ring
+					}
+					//((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(TIME_TO_VIBRATE); //is time in ms
+					
 				}
 				
         		//Toast.makeText(getBaseContext(), ((Long)(SystemClock.elapsedRealtime() - current_chronometer.getBase())).toString(), Toast.LENGTH_SHORT).show();

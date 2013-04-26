@@ -2,12 +2,15 @@ package com.pomometer.PomometerApp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 
 public class DurationAndBreak extends Activity{
+	
+	public static final String USER_PREFERENCES = "MyPreferences"; 
 	
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +24,14 @@ public class DurationAndBreak extends Activity{
      */
     public void finishDialog(View v) {
     	// Do something in response to button
-    	Intent intent = new Intent(this, TaskListActivity.class);
     	EditText durationEditText = (EditText) findViewById(R.id.duration_length);
-    	EditText breakEditText = (EditText) findViewById(R.id.break_length);
     	String durationLength = durationEditText.getText().toString();
-    	String breakLength = breakEditText.getText().toString();
-    	intent.putExtra("duration_length", durationLength);
-    	intent.putExtra("break_length", breakLength);
+    	
+    	SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
+    	SharedPreferences.Editor editor = settings.edit();
+    	editor.putString("duration", durationLength);
+    	editor.commit();
+    	
         DurationAndBreak.this.finish();
     }
 }
