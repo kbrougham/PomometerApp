@@ -90,7 +90,7 @@ public class PomometerFinishActivity extends Activity {
 			
 			DefaultHttpClient client = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost("http://pomometer.herokuapp.com/results.json");
-			
+			//HttpPost  httpPost = new HttpPost("localhost:3000")
 			try {
 				StringEntity JSONResult = new StringEntity(params[0].toString());
 				httpPost.setEntity(JSONResult);

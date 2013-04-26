@@ -48,6 +48,7 @@ public class ResultListActivity extends Activity {
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
+			//task_id = ((Integer) extras.getInt("id")).toString();
 			task_id = extras.getString("id");
 		}
 		
@@ -159,6 +160,7 @@ public class ResultListActivity extends Activity {
 						Date started_at = null;
 						Date ended_at = null;
 						try {
+							//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
 							started_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH).parse(jo.getString("started_at"));
 							ended_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH).parse(jo.getString("ended_at"));
 						} catch (ParseException e) {
