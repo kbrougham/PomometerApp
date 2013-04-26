@@ -50,25 +50,11 @@ public class PomometerOptionsActivity extends Activity {
             		int duration = ((NumberPicker) findViewById(R.id.duration_picker)).getValue();
             		EditText goalEditText = (EditText) findViewById(R.id.goal_entry);
             		
-            		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
-            		Date endPomometer = new Date();
-            		Date startPomometer = new Date();
-            		//since declaring starts a new date NOW (finished timer) we want to set that to end
-            		//and calculate backwards to find start time.  
-            		
-            		//convert duration to milliseconds and substract to get start time
-            		startPomometer.setTime(endPomometer.getTime() - (duration*60*1000));
-            		
-            		String formattedStartDate = dateFormatter.format(startPomometer);
-            		String formattedEndDate = dateFormatter.format(endPomometer);
-            		
             		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
             		
             		i.putExtra("duration", ((NumberPicker) findViewById(R.id.duration_picker)).getValue());
             		i.putExtra("task_id", task_id);
             		i.putExtra("goal", goalEditText.getText().toString());
-            		i.putExtra("started_at", formattedStartDate);
-            		i.putExtra("ended_at", formattedEndDate);
             		
             		startActivity(i);
             	}

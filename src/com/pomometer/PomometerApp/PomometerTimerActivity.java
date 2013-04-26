@@ -27,6 +27,8 @@ public class PomometerTimerActivity extends Activity {
 		final Bundle extras = getIntent().getExtras();
 		
 		final int sent_duration = extras.getInt("duration");
+		//display entered duration?
+		//display rounding warning?
 		
 		Button cancel_button = (Button) findViewById(R.id.cancel_button);
 		Button confirm_button = (Button) findViewById(R.id.confirm_button);
@@ -44,8 +46,6 @@ public class PomometerTimerActivity extends Activity {
             	i.putExtra("elapsed_duration", (SystemClock.elapsedRealtime() - pomo_timer.getBase())); //ms elapsed
         		i.putExtra("task_id", extras.getInt("task_id"));
         		i.putExtra("goal", extras.getString("goal"));
-        		i.putExtra("started_at", extras.getString("formattedStartDate"));
-        		i.putExtra("ended_at", extras.getString("formattedEndDate"));
         		startActivity(i);
             }
            });
