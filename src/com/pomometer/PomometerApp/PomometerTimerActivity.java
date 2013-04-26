@@ -80,7 +80,7 @@ public class PomometerTimerActivity extends Activity {
 	    //respond to menu item selection
 		switch (item.getItemId()) {
 			case R.id.durationAndBreakLength:
-				startActivity(new Intent(this, DurationAndBreak.class));
+				startActivity(new Intent(this, GlobalOptionsActivity.class));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
