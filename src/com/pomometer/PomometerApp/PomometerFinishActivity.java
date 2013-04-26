@@ -50,7 +50,7 @@ public class PomometerFinishActivity extends Activity {
 		
 		final int calculated_duration = temp_duration;
 		
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH);
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz");
 		Date endPomometer = new Date();
 		Date startPomometer = new Date();
 		//since declaring starts a new date NOW (finished timer) we want to set that to end

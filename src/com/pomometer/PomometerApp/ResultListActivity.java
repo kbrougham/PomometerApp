@@ -154,18 +154,13 @@ public class ResultListActivity extends Activity {
 	      
 					try {
 						jo = (JSONObject) ja.get(i);
-						Locale defaultLocale = Locale.getDefault();
 						String goal = jo.getString("goal");
 						String notes = jo.getString("notes");
 						Date started_at = null;
 						Date ended_at = null;
 						try {
-							//Calendar myCalendar = Calendar.getInstance();
-							//System.out.println(jo.getString("started_at"));
-							//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
-							started_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss z", defaultLocale).parse(jo.getString("started_at"));
-							System.out.println("This is the started at date: ");
-							ended_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss z", defaultLocale).parse(jo.getString("ended_at"));
+							started_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz").parse(jo.getString("started_at"));
+							ended_at = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz").parse(jo.getString("ended_at"));
 							
 						} catch (ParseException e) {
 							// TODO Auto-generated catch block
