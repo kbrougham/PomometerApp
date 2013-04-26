@@ -20,10 +20,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class PomometerFinishActivity extends Activity {
-	String notes = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,9 +47,10 @@ public class PomometerFinishActivity extends Activity {
 		{
 			temp_duration = (int)Math.floor(decimal_duration);
 		}
+		
 		final int calculated_duration = temp_duration;
 		
-		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH);
 		Date endPomometer = new Date();
 		Date startPomometer = new Date();
 		//since declaring starts a new date NOW (finished timer) we want to set that to end
@@ -61,7 +62,7 @@ public class PomometerFinishActivity extends Activity {
 		final String formattedStartDate = dateFormatter.format(startPomometer);
 		final String formattedEndDate = dateFormatter.format(endPomometer);
 		
-		final int task_id = extras.getInt("task_id");
+		final int task_id = Integer.parseInt(extras.getString("task_id"));
 		
 		//set title to Complete: goal.  No strings.xml entry as this is dynamic
 		((TextView) findViewById(R.id.finish_title)).setText("Complete: " + sent_goal);
@@ -71,16 +72,20 @@ public class PomometerFinishActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				//json to commit to webserver
+				final String notes = ((EditText) findViewById(R.id.notes_edit_text)).getText().toString();
+				
 				JSONObject result = new JSONObject();
 				
 				try {
-					result.put("id", 99);
+					//result.put("id", 99);
+					
 					result.put("goal", sent_goal);
 					result.put("notes", notes);
 					result.put("duration", calculated_duration);
 					result.put("started_at", formattedStartDate);
 					result.put("ended_at", formattedEndDate);
 					result.put("task_id", task_id);
+					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

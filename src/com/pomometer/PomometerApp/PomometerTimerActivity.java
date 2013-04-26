@@ -44,7 +44,7 @@ public class PomometerTimerActivity extends Activity {
             	
             	Intent i = new Intent(getApplicationContext(), PomometerFinishActivity.class);
             	i.putExtra("elapsed_duration", (SystemClock.elapsedRealtime() - pomo_timer.getBase())); //ms elapsed
-        		i.putExtra("task_id", extras.getInt("task_id"));
+        		i.putExtra("task_id", extras.getString("task_id"));
         		i.putExtra("goal", extras.getString("goal"));
         		startActivity(i);
             }
