@@ -2,6 +2,9 @@ package com.pomometer.PomometerApp;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -33,9 +36,31 @@ public class PomometerFinishActivity extends Activity {
 		final Long sent_duration = extras.getLong("elapsed_duration"); //in ms
 		double decimal_duration = sent_duration/1000; //converts to seconds
 		decimal_duration /= 60; //converts to minutes
-		final int calculated_duration = (int)Math.ceil(decimal_duration); //round up to nearest minute
-		final String started_at = extras.getString("started_at");
-		final String ended_at = extras.getString("ended_at");
+		
+		//round down to nearest minute. if 0, make it 1
+		int temp_duration=0;
+		if ((int)Math.floor(decimal_duration) == 0)
+		{
+			temp_duration = 1;
+		}
+		else
+		{
+			temp_duration = (int)Math.floor(decimal_duration);
+		}
+		final int calculated_duration = temp_duration;
+		
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.Z", Locale.ENGLISH);
+		Date endPomometer = new Date();
+		Date startPomometer = new Date();
+		//since declaring starts a new date NOW (finished timer) we want to set that to end
+		//and calculate backwards to find start time.  
+		
+		//convert duration to milliseconds and substract to get start time
+		startPomometer.setTime(endPomometer.getTime() - (calculated_duration*60*1000));
+		
+		final String formattedStartDate = dateFormatter.format(startPomometer);
+		final String formattedEndDate = dateFormatter.format(endPomometer);
+		
 		final int task_id = extras.getInt("task_id");
 		
 		//set title to Complete: goal.  No strings.xml entry as this is dynamic
@@ -53,8 +78,8 @@ public class PomometerFinishActivity extends Activity {
 					result.put("goal", sent_goal);
 					result.put("notes", notes);
 					result.put("duration", calculated_duration);
-					result.put("started_at", started_at);
-					result.put("ended_at", ended_at);
+					result.put("started_at", formattedStartDate);
+					result.put("ended_at", formattedEndDate);
 					result.put("task_id", task_id);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
@@ -67,8 +92,8 @@ public class PomometerFinishActivity extends Activity {
 				 * sent_goal
 				 * (EditText) findViewById(R.id.notes_edit_text)
 				 * calculated_duation
-				 * started_at
-				 * ended_at
+				 * formattedStartDate
+				 * formattedEndDate
 				 * task_id
 				 */
 				
