@@ -13,8 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pomometer.PomometerApp.ProjectListActivity.Read;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -44,7 +42,7 @@ public class TaskListActivity extends Activity {
 		
 		//change title to correspond to task
 		TextView page_title = (TextView) findViewById(R.id.page_title);
-		page_title.setText("Task List");
+		page_title.setText(R.string.task_list_title);
 		
 		final int MAX_LINES_TASK_NAME = 2;
 		
@@ -59,7 +57,7 @@ public class TaskListActivity extends Activity {
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 			
 			TextView notice = new TextView(this);
-			notice.setText("There are no Tasks for this project");
+			notice.setText(R.string.no_tasks);
 			notice.setMaxLines(MAX_LINES_TASK_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
@@ -111,7 +109,8 @@ public class TaskListActivity extends Activity {
 	    Vector<Task> tasks = new Vector<Task>();
 	    JSONObject obj = null;
 	    
-	        String jsonUrl = "http://pomometer.herokuapp.com/projects/" + project_id + ".json";
+	        String jsonUrl = getResources().getString(R.string.json_task_list) + project_id + ".json";
+	        
 	        try {
 				obj = new Read().execute(jsonUrl).get();
 			} catch (InterruptedException e) {

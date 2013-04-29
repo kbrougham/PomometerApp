@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -86,8 +85,8 @@ public class PomometerFinishActivity extends Activity {
 					result.put("ended_at", formattedEndDate);
 					result.put("task_id", task_id);
 					
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
+				} 
+				catch (JSONException e) {
 					e.printStackTrace();
 				}
 				
@@ -115,21 +114,20 @@ public class PomometerFinishActivity extends Activity {
 	public class Write extends AsyncTask<JSONObject, Integer, Boolean>{
 
 		@Override
-		protected Boolean doInBackground(JSONObject... params) {
-			// TODO Auto-generated method stub
-			
+		protected Boolean doInBackground(JSONObject... params) {			
 			DefaultHttpClient client = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost("http://pomometer.herokuapp.com/results.json");
+			HttpPost httpPost = new HttpPost(getResources().getString(R.string.json_upload_result));
 			//HttpPost  httpPost = new HttpPost("localhost:3000")
 			try {
 				StringEntity JSONResult = new StringEntity(params[0].toString());
 				httpPost.setEntity(JSONResult);
 				httpPost.setHeader("Content-Type","application/json");
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
+			} 
+			catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
 			
+			@SuppressWarnings("unused")
 			HttpResponse response = null;
 			
 			try {

@@ -48,7 +48,7 @@ public class ProjectListActivity extends Activity {
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 			TextView notice = new TextView(this);
 			
-			notice.setText("There are no projects at this time.");
+			notice.setText(R.string.no_projects);
 			notice.setMaxLines(MAX_LINES_PROJECT_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
@@ -117,7 +117,8 @@ public class ProjectListActivity extends Activity {
 	    Vector<Project> projects = new Vector<Project>();
 	    JSONObject obj = null;
 	    
-	        String jsonUrl = "http://pomometer.herokuapp.com/projects.json";
+	        String jsonUrl = getResources().getString(R.string.json_project_list);
+	        
 	        try {
 				obj = new Read().execute(jsonUrl).get();
 			} catch (InterruptedException e) {

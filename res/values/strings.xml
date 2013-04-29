@@ -33,4 +33,21 @@
         <item>Ring+Vibrate</item>
         <item>Silent</item>
     </string-array>
+    
+    <string name="temporary_to_be_replaced">Temp</string>
+    
+    <string name="no_projects">There are no Projects at this time.</string>
+    <string name="no_tasks">There are no Tasks for this project</string>
+    <string name="no_results">There are no Results for this Task.</string>
+    
+    <string name="task_list_title">Task List</string>
+    <string name="result_list_title">Result List</string>
+    
+    <string name="enter_a_goal">You must enter a goal!</string>
+    
+    <!-- JSON Strings -->
+    <string name="json_project_list">http://pomometer.herokuapp.com/projects.json</string>
+    <string name="json_task_list">http://pomometer.herokuapp.com/projects/<!-- + project_id + ".json" --></string>
+    <string name="json_result_list">http://pomometer.herokuapp.com/tasks/<!-- + task_id + ".json" --></string>
+    <string name="json_upload_result">http://pomometer.herokuapp.com/results.json</string>
 </resources>

@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:text="@string/temporary_to_be_replaced"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/white_text"
         android:textSize="@dimen/page_title_text_size" />

@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.NumberPicker;
 import android.widget.Chronometer.OnChronometerTickListener;
 
 public class PomometerTimerActivity extends Activity {

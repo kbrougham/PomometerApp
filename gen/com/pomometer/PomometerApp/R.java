@@ -102,13 +102,30 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int cancel_button=0x7f07000e;
         public static final int complete_button=0x7f07000f;
         public static final int duration_length_header=0x7f070008;
+        public static final int enter_a_goal=0x7f070017;
         public static final int enter_notes=0x7f070010;
         public static final int hello_world=0x7f070002;
+        /**  JSON Strings 
+         */
+        public static final int json_project_list=0x7f070018;
+        /**  + task_id + ".json" 
+         */
+        public static final int json_result_list=0x7f07001a;
+        /**  + project_id + ".json" 
+         */
+        public static final int json_task_list=0x7f070019;
+        public static final int json_upload_result=0x7f07001b;
         public static final int length_measurement=0x7f070009;
+        public static final int no_projects=0x7f070012;
+        public static final int no_results=0x7f070014;
+        public static final int no_tasks=0x7f070013;
         public static final int options_button_name=0x7f07000d;
         public static final int project_list_button_new=0x7f070004;
         public static final int project_list_title=0x7f070003;
+        public static final int result_list_title=0x7f070016;
         public static final int start_pomodoro=0x7f070007;
+        public static final int task_list_title=0x7f070015;
+        public static final int temporary_to_be_replaced=0x7f070011;
     }
     public static final class style {
         /** 

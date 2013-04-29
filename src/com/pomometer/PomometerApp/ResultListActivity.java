@@ -8,9 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
@@ -42,9 +40,6 @@ public class ResultListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_layout);	
-
-		//the project_id sent by the Task list
-		
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -54,7 +49,7 @@ public class ResultListActivity extends Activity {
 		
 		//change title to correspond to task
 		TextView page_title = (TextView) findViewById(R.id.page_title);
-		page_title.setText("Result List");
+		page_title.setText(R.string.result_list_title);
 		
 		final int MAX_LINES_RESULT_NAME = 2;
 		
@@ -71,7 +66,7 @@ public class ResultListActivity extends Activity {
 		
 		//button to add to bottom frame
 		Button start_button = new Button(this);
-		start_button.setText("Start Pomodoro");
+		start_button.setText(R.string.start_pomodoro);
 		start_button.setTextColor(getResources().getColor(R.color.white_text));
 		start_button.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 		start_button.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -93,7 +88,7 @@ public class ResultListActivity extends Activity {
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 			
 			TextView notice = new TextView(this);
-			notice.setText("There are no Results for this Task.");
+			notice.setText(R.string.no_results);
 			notice.setMaxLines(MAX_LINES_RESULT_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
@@ -134,7 +129,7 @@ public class ResultListActivity extends Activity {
 	    Vector<Result> results = new Vector<Result>();
 	    JSONObject obj = null;
 	    
-	        String jsonUrl = "http://pomometer.herokuapp.com/tasks/" + task_id + ".json";
+	        String jsonUrl = getResources().getString(R.string.json_result_list) + task_id + ".json";
 	        try {
 				obj = new Read().execute(jsonUrl).get();
 			} catch (InterruptedException e) {

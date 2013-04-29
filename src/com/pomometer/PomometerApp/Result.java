@@ -1,7 +1,5 @@
 package com.pomometer.PomometerApp;
 
-import java.util.Date;
-
 public class Result {
 
 	private int id;
