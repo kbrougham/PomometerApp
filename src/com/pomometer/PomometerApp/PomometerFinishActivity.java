@@ -104,7 +104,7 @@ public class PomometerFinishActivity extends Activity {
         		//Toast.makeText(getBaseContext(), ((Integer)calculated_duration).toString(), Toast.LENGTH_SHORT).show();
 				String task_id_carried_to_results = Integer.toString(task_id);
 				Intent i = new Intent(getApplicationContext(), ResultListActivity.class);
-				i.putExtra("id", task_id_carried_to_results); 
+				i.putExtra("task_id", task_id_carried_to_results); 
 				i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         		startActivity(i);
 			}			

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -56,6 +57,7 @@ public class PomometerOptionsActivity extends Activity {
             		
             		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
             		
+            		i.putExtra("start_time", SystemClock.elapsedRealtime());
             		i.putExtra("duration", ((NumberPicker) findViewById(R.id.duration_picker)).getValue());
             		i.putExtra("task_id", task_id);
             		i.putExtra("goal", goalEditText.getText().toString());
