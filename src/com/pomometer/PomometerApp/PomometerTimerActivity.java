@@ -43,6 +43,7 @@ public class PomometerTimerActivity extends Activity {
 		
 		cancel_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	myMediaPlayer.stop();
             	finish();
             }
            });
