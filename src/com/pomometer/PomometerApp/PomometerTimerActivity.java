@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
@@ -26,15 +27,18 @@ public class PomometerTimerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pomometer_timer);
 		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+		 
 		final Bundle extras = getIntent().getExtras();
 		
 		SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
 		final String alarm_type = settings.getString("alert_type", "Silent");
 		final int vibration_length = Integer.parseInt(settings.getString("vibration_length", "1"));
 		
-		final int sent_duration = extras.getInt("duration");
+		final Long sent_duration = (long) (extras.getInt("duration")*60*1000);
 		
 		final MediaPlayer myMediaPlayer = MediaPlayer.create(getBaseContext(), Settings.System.DEFAULT_RINGTONE_URI);
+		
 		//display entered duration?
 		//display rounding warning?
 		
@@ -52,7 +56,6 @@ public class PomometerTimerActivity extends Activity {
             	Chronometer pomo_timer = (Chronometer) findViewById(R.id.pomo_timer);
             	
             	myMediaPlayer.stop();
-            	
             	Intent i = new Intent(getApplicationContext(), PomometerFinishActivity.class);
             	i.putExtra("elapsed_duration", (SystemClock.elapsedRealtime() - pomo_timer.getBase())); //ms elapsed
         		i.putExtra("task_id", extras.getString("task_id"));
@@ -63,14 +66,16 @@ public class PomometerTimerActivity extends Activity {
 		
 		Chronometer pomo_timer = (Chronometer) findViewById(R.id.pomo_timer);
 		//pomo_timer.setFormat("MM:SS");
+
 		pomo_timer.setBase(extras.getLong("start_time"));
 		pomo_timer.start();
+		
 		
 		pomo_timer.setOnChronometerTickListener(new OnChronometerTickListener() {
 			@Override
 			public void onChronometerTick(Chronometer current_chronometer) {
 				//these are handled in milliseconds, so I need to convert duration to ms to compare
-				if (SystemClock.elapsedRealtime() - current_chronometer.getBase() > sent_duration*60*1000)
+				if (SystemClock.elapsedRealtime() - current_chronometer.getBase() > sent_duration)
 				{
 					
 					((Chronometer) findViewById(R.id.pomo_timer)).stop();

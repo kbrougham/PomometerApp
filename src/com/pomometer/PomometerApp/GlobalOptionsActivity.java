@@ -1,7 +1,6 @@
 package com.pomometer.PomometerApp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -44,7 +43,6 @@ public class GlobalOptionsActivity extends Activity{
      */
     public void finishDialog(View v) {
     	// Do something in response to button
-    	//Intent intent = new Intent(this, TaskListActivity.class);
     	EditText durationEditText = (EditText) findViewById(R.id.duration_length);
     	EditText alarmLengthEditText = (EditText) findViewById(R.id.alert_length);
     	Spinner spinner = (Spinner) findViewById(R.id.alert_type_spinner);
