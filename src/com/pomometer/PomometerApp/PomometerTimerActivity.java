@@ -3,6 +3,9 @@ package com.pomometer.PomometerApp;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -28,8 +31,8 @@ public class PomometerTimerActivity extends Activity {
 		final Bundle extras = getIntent().getExtras();
 		
 		SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
-		final int alarm_type = settings.getInt("alarm", 1);
-		final int vibration_length = setting.getInt("vibration_length", 1);
+		final String alarm_type = settings.getString("alert_type", "Silent");
+		final int vibration_length = Integer.parseInt(settings.getString("vibration_length", "1"));
 		
 		final int sent_duration = extras.getInt("duration");
 		//display entered duration?
@@ -66,16 +69,33 @@ public class PomometerTimerActivity extends Activity {
 				//these are handled in milliseconds, so I need to convert duration to ms to compare
 				if (SystemClock.elapsedRealtime() - current_chronometer.getBase() > sent_duration*60*1000)
 				{
+					//System.out.println("Alarm Type: " + alarm_type);
+					//System.out.println("Vibration Length: " + vibration_length);
+					
 					((Chronometer) findViewById(R.id.pomo_timer)).stop();
-					if (alarm_type == 1){
+					if (alarm_type.equals("Vibrate")){
 						//vibration
-						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length); //is time in ms
-					}else if (alarm_type == 2){
+						System.out.println("I got into Vibrate");
+						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length*1000); //is time in ms
+					}else if (alarm_type.equals("Ring+Vibrate")){
+						System.out.println("I got into Ring+Vibrate");
 						//vibration and ring
-						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length); //is time in ms
-					}else if (alarm_type == 3){
+						//MediaPlayer myMediaPlayer = MediaPlayer.create(getBaseContext(), Settings.System.DEFAULT_RINGTONE_URI);
+						//myMediaPlayer.start();
+						((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(vibration_length*1000); //is time in ms
+						/*
+						Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+						Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+						r.play();
+						*/
+					}else if (alarm_type.equals("Ring")){
+						
+						System.out.println("I got into Ring");
 						//ring
+					}else{
+						System.out.println("I got into none of them");
 					}
+					System.out.println("End of method");
 					//((Vibrator)getSystemService(VIBRATOR_SERVICE)).vibrate(TIME_TO_VIBRATE); //is time in ms
 					
 				}
@@ -95,7 +115,7 @@ public class PomometerTimerActivity extends Activity {
 	    //respond to menu item selection
 		switch (item.getItemId()) {
 			case R.id.durationAndBreakLength:
-				startActivity(new Intent(this, DurationAndBreak.class));
+				startActivity(new Intent(this, GlobalOptionsActivity.class));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

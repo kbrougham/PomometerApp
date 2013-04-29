@@ -36,7 +36,7 @@ public class PomometerOptionsActivity extends Activity {
 		
 		SharedPreferences settings = getSharedPreferences(USER_PREFERENCES, 0);
 		duration_length = settings.getString("duration", "1");
-		System.out.println("Duration Length: " + duration_length);
+		
 		
 		NumberPicker duration_picker = (NumberPicker) findViewById(R.id.duration_picker);
 		duration_picker.setMaxValue(MAX_DURATION_IN_MINUTES);
@@ -66,7 +66,7 @@ public class PomometerOptionsActivity extends Activity {
             	}
             }});
 		
-		try
+		/*try //still not working on my 4.0.3 phone, but works well on Ian's 4.1+
 		{
 			// retrieve the textview reference to change text colour
 			TextView npTextView = (TextView) duration_picker.getChildAt(1); // since indexing begins at 0
@@ -75,7 +75,7 @@ public class PomometerOptionsActivity extends Activity {
 		catch (Exception e)
 		{
 			
-		}
+		}*/
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,7 +88,7 @@ public class PomometerOptionsActivity extends Activity {
 	    //respond to menu item selection
 		switch (item.getItemId()) {
 			case R.id.durationAndBreakLength:
-				startActivity(new Intent(this, DurationAndBreak.class));
+				startActivity(new Intent(this, GlobalOptionsActivity.class));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
