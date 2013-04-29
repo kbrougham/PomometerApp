@@ -44,7 +44,7 @@ public class GlobalOptionsActivity extends Activity{
      */
     public void finishDialog(View v) {
     	// Do something in response to button
-    	Intent intent = new Intent(this, TaskListActivity.class);
+    	//Intent intent = new Intent(this, TaskListActivity.class);
     	EditText durationEditText = (EditText) findViewById(R.id.duration_length);
     	EditText alarmLengthEditText = (EditText) findViewById(R.id.alert_length);
     	Spinner spinner = (Spinner) findViewById(R.id.alert_type_spinner);

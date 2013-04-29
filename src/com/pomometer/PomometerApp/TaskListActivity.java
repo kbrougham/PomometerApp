@@ -13,8 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.pomometer.PomometerApp.ProjectListActivity.Read;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -36,16 +34,15 @@ public class TaskListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_layout);	
-
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			project_id = extras.getString("id");
+			project_id = extras.getString("project_id");
 		}
 		
 		//change title to correspond to task
 		TextView page_title = (TextView) findViewById(R.id.page_title);
-		page_title.setText("Task List");
+		page_title.setText(R.string.task_list_title);
 		
 		final int MAX_LINES_TASK_NAME = 2;
 		
@@ -53,21 +50,23 @@ public class TaskListActivity extends Activity {
 		TableLayout task_list_content = (TableLayout) findViewById(R.id.page_list_content);
 		//list of Tasks, to be retrieved through GSON
 		Vector<Task> list_of_tasks = new Vector<Task>();
-		list_of_tasks = populate();
-		
+		list_of_tasks = populate();		
 		
 		if (list_of_tasks.size() == 0){
 			TableRow a_row_to_add = new TableRow(this);
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
+			
 			TextView notice = new TextView(this);
-			notice.setText("There are no Tasks for this project");
+			notice.setText(R.string.no_tasks);
 			notice.setMaxLines(MAX_LINES_TASK_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
 			notice.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
+			
 			a_row_to_add.addView(notice);
 			task_list_content.addView(a_row_to_add);
-		}else{
+		}
+		else{
 			for(int i=0;i<list_of_tasks.size();i++)
 			{
 				//New row to be added to table
@@ -93,7 +92,7 @@ public class TaskListActivity extends Activity {
 		     	    	
 		     	    	//intent to load new activity
 		     	    	Intent i = new Intent(getApplicationContext(), ResultListActivity.class);
-		     	    	i.putExtra("id",id_to_send);
+		     	    	i.putExtra("task_id",id_to_send);
 		     	    	startActivity(i);
 		             }
 		         });
@@ -110,7 +109,8 @@ public class TaskListActivity extends Activity {
 	    Vector<Task> tasks = new Vector<Task>();
 	    JSONObject obj = null;
 	    
-	        String jsonUrl = "http://pomometer.herokuapp.com/projects/" + project_id + ".json";
+	        String jsonUrl = getResources().getString(R.string.json_task_list) + project_id + ".json";
+	        
 	        try {
 				obj = new Read().execute(jsonUrl).get();
 			} catch (InterruptedException e) {

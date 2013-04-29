@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class PomometerOptionsActivity extends Activity {
@@ -49,15 +49,15 @@ public class PomometerOptionsActivity extends Activity {
             	//if the edit box where the goal is entered is blank, then tell them to enter something, otherwise, load next screen
             	if (((EditText) findViewById(R.id.goal_entry)).getText().toString().length() < 1)
             	{
-            		Toast.makeText(getBaseContext(), "You must enter a goal!", Toast.LENGTH_SHORT).show();
+            		Toast.makeText(getBaseContext(), R.string.enter_a_goal, Toast.LENGTH_SHORT).show();
             	}
             	else
             	{
-            		int duration = ((NumberPicker) findViewById(R.id.duration_picker)).getValue();
             		EditText goalEditText = (EditText) findViewById(R.id.goal_entry);
             		
             		Intent i = new Intent(getApplicationContext(), PomometerTimerActivity.class);
             		
+            		i.putExtra("start_time", SystemClock.elapsedRealtime());
             		i.putExtra("duration", ((NumberPicker) findViewById(R.id.duration_picker)).getValue());
             		i.putExtra("task_id", task_id);
             		i.putExtra("goal", goalEditText.getText().toString());

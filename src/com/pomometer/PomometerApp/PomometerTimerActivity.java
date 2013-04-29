@@ -17,8 +17,7 @@ import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
 
 public class PomometerTimerActivity extends Activity {
-	
-	final long start_time = SystemClock.elapsedRealtime();
+
 	final long TIME_TO_VIBRATE = 2000;
 	public static final String USER_PREFERENCES = "MyPreferences";
 	
@@ -63,7 +62,7 @@ public class PomometerTimerActivity extends Activity {
 		
 		Chronometer pomo_timer = (Chronometer) findViewById(R.id.pomo_timer);
 		//pomo_timer.setFormat("MM:SS");
-		pomo_timer.setBase(start_time);
+		pomo_timer.setBase(extras.getLong("start_time"));
 		pomo_timer.start();
 		
 		pomo_timer.setOnChronometerTickListener(new OnChronometerTickListener() {
