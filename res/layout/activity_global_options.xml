@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingTop="12dip"
-        android:text="@string/alert_length_header"
+        android:text="@string/vibration_length_header"
         android:textColor="@color/black"
         android:textSize="@dimen/font_medium" />
     
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingBottom="12dip"
-        android:text="@string/alert_length_subheader"
+        android:text="@string/vibration_length_subheader"
         android:textColor="@color/black"
         android:textSize="@dimen/font_small" />
    

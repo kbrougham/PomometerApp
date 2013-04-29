@@ -95,8 +95,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int action_settings=0x7f070001;
         public static final int add_a_duration=0x7f070006;
         public static final int add_a_goal=0x7f070005;
-        public static final int alert_length_header=0x7f07000b;
-        public static final int alert_length_subheader=0x7f07000c;
         public static final int alert_type_header=0x7f07000a;
         public static final int app_name=0x7f070000;
         public static final int cancel_button=0x7f07000e;
@@ -109,6 +107,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int project_list_button_new=0x7f070004;
         public static final int project_list_title=0x7f070003;
         public static final int start_pomodoro=0x7f070007;
+        public static final int vibration_length_header=0x7f07000b;
+        public static final int vibration_length_subheader=0x7f07000c;
     }
     public static final class style {
         /** 

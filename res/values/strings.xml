@@ -18,8 +18,8 @@
     
     <string name="alert_type_header">Alert Type</string>
     
-    <string name="alert_length_header">Alert Length</string>
-	<string name="alert_length_subheader">(in seconds)</string>
+    <string name="vibration_length_header">Vibration Length</string>
+	<string name="vibration_length_subheader">(in seconds)</string>
 	
 	<string name="options_button_name">Save Settings</string>
     <string name="cancel_button">Cancel</string>
