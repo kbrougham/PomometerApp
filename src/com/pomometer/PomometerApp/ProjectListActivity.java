@@ -47,14 +47,17 @@ public class ProjectListActivity extends Activity {
 			TableRow a_row_to_add = new TableRow(this);
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
 			TextView notice = new TextView(this);
+			
 			notice.setText("There are no projects at this time.");
 			notice.setMaxLines(MAX_LINES_PROJECT_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
 			notice.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
+			
 			a_row_to_add.addView(notice);
 			project_list_content.addView(a_row_to_add);
-		}else{
+		}
+		else{
 			for(int i=0;i<list_of_projects.size();i++)
 			{
 				//New row to be added to table
@@ -81,7 +84,7 @@ public class ProjectListActivity extends Activity {
 		     	    	
 		     	    	//intent to load new activity
 		     	    	Intent i = new Intent(getApplicationContext(), TaskListActivity.class);
-		     	    	i.putExtra("id",id_to_send);
+		     	    	i.putExtra("project_id",id_to_send);
 		     	    	startActivity(i);
 		             }
 		         });
@@ -90,9 +93,7 @@ public class ProjectListActivity extends Activity {
 				a_row_to_add.addView(project_name);
 				project_list_content.addView(a_row_to_add);			
 			}
-		}
-		
-		
+		}		
 	}
 	
 	public boolean onCreateOptionsMenu(Menu menu) {

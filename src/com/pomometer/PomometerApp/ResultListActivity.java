@@ -49,7 +49,7 @@ public class ResultListActivity extends Activity {
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			//task_id = ((Integer) extras.getInt("id")).toString();
-			task_id = extras.getString("id");
+			task_id = extras.getString("task_id");
 		}
 		
 		//change title to correspond to task
@@ -91,15 +91,18 @@ public class ResultListActivity extends Activity {
 		if (list_of_results.size() == 0){
 			TableRow a_row_to_add = new TableRow(this);
 			a_row_to_add.setBackgroundColor(getResources().getColor(R.color.red_foreground));
+			
 			TextView notice = new TextView(this);
 			notice.setText("There are no Results for this Task.");
 			notice.setMaxLines(MAX_LINES_RESULT_NAME);
 			notice.setTextColor(getResources().getColor(R.color.white_text));
 			notice.setTextSize(20);
 			notice.setLayoutParams(new TableRow.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 0.66f));
+			
 			a_row_to_add.addView(notice);
 			result_list_content.addView(a_row_to_add);
-		}else{
+		}
+		else{
 			for(int i=0;i<list_of_results.size();i++)
 			{
 				//New row to be added to table
